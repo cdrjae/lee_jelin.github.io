@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity 7</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #player {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <img id="player" src="https://media.tenor.com/yOzaaX7UQw8AAAAM/cat-cute.gif" alt="Player">
+    </div>
+
+    <script>
+        const player = document.getElementById('player');
+        let playerX = 0;
+        let playerY = 0;
+        const containerWidth = document.getElementById('game-container').offsetWidth;
+        const containerHeight = document.getElementById('game-container').offsetHeight;
+
+        // Update player position on key press
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            
+            switch (key) {
+                case 'arrowup':
+                case 'w':
+                    if (playerY > 0) {
+                        playerY -= 10;
+                    }
+                    break;
+                case 'arrowdown':
+                case 's':
+                    if (playerY < containerHeight - player.offsetHeight) {
+                        playerY += 10;
+                    }
+                    break;
+                case 'arrowleft':
+                case 'a':
+                    if (playerX > 0) {
+                        playerX -= 10;
+                    }
+                    break;
+                case 'arrowright':
+                case 'd':
+                    if (playerX < containerWidth - player.offsetWidth) {
+                        playerX += 10;
+                    }
+                    break;
+                default:
+                    return; // Ignore other keys
+            }
+
+            // Update player position
+            player.style.left = playerX + 'px';
+            player.style.top = playerY + 'px';
+        });
+    </script>
+</body>
+</html>
